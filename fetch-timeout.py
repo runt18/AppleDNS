@@ -50,7 +50,7 @@ def handle_ip(target):
     except ImportError:
         from urlparse import urlparse
 
-    address = urlparse('http://%s' % target)
+    address = urlparse('http://{0!s}'.format(target))
     return address.hostname, address.port or 80
 
 
@@ -70,9 +70,9 @@ def fetch(payload):
                     key=lambda item: item['delta']
                 )
                 service_item['ips'][name] = ips
-                print('\t%s' % name)
+                print('\t{0!s}'.format(name))
                 for item in ips:
-                    print('\t\t%(ip)-15s\t%(delta)sms' % item)
+                    print('\t\t{ip:<15!s}\t{delta!s}ms'.format(**item))
     return payload
 
 

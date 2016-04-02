@@ -44,7 +44,7 @@ def export(payload, target):
         return
     for service in sorted(payload, key=lambda item: item['title']):
         fast_ip = find_fast_ip(service['ips'])
-        print('# %(title)s' % service)
+        print('# {title!s}'.format(**service))
         for domain in sorted(service['domains'], key=len):
             template = '%s'
             if not fast_ip:
@@ -59,7 +59,7 @@ def load_payload():
     target_filename = 'apple-cdn-speed.report'
     if os.path.exists(target_filename):
         return json.load(open(target_filename, encoding='UTF-8'))
-    print('please run "fetch-timeout.py" build "%s".' % target_filename)
+    print('please run "fetch-timeout.py" build "{0!s}".'.format(target_filename))
 
 
 def main():
